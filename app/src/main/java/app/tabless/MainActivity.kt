@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -23,12 +24,14 @@ class MainActivity : AppCompatActivity() {
 
         val searchField = findViewById<EditText>(R.id.search_field)
         this.searchField = searchField
-        searchField.setOnEditorActionListener { _: TextView?, _: Int, event: KeyEvent? ->
-            if (event?.action == KeyEvent.ACTION_DOWN) {
-                loadSearch()
-                return@setOnEditorActionListener true
+        searchField.setOnEditorActionListener { _: TextView?, actionId: Int, event: KeyEvent? ->
+            return@setOnEditorActionListener when (actionId) {
+                EditorInfo.IME_ACTION_SEARCH -> {
+                    loadSearch()
+                    true
+                }
+                else -> false
             }
-            false
         }
 
         val webView = findViewById<WebView>(R.id.web_view)
