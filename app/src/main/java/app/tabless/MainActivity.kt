@@ -12,7 +12,9 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
-
+// TODO: Add clear on background after wait
+// TODO: Add ability to clear without hitting back a lot
+// TODO: Fix the issue NOTEd below with the back stack
 class MainActivity : AppCompatActivity() {
 
     private var searchField: EditText? = null
