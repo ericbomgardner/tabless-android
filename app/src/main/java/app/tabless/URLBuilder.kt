@@ -12,12 +12,14 @@ class URLBuilder {
 
     /// If text looks like a URL, creates that URL
     /// Otherwise, treats it like a search query and returns a search URL
-    fun createURLString(text: String): String? {
-        return if (shouldTreatAsWebURL(text)) {
-            createWebURL(text)
-        } else {
-            createSearchURL(text)
+    fun createURLString(text: String): String {
+        if (shouldTreatAsWebURL(text)) {
+            val webURL = createWebURL(text)
+            if (webURL != null) {
+                return webURL
+            }
         }
+        return createSearchURL(text)
     }
 
     private fun createWebURL(text: String): String? {
@@ -40,7 +42,7 @@ class URLBuilder {
         return urlString
     }
 
-    private fun createSearchURL(text: String): String? {
+    private fun createSearchURL(text: String): String {
         val searchQuery = URLEncoder.encode(text, "UTF-8")
         return "${searchURLBase}${searchQuery}"
     }
