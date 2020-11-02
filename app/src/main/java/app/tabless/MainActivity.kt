@@ -45,6 +45,11 @@ class MainActivity : AppCompatActivity() {
             webView?.visibility = View.INVISIBLE
             webView?.stopLoading()
             webView?.clearHistory()
+
+            if (searchField?.requestFocus() == true) {
+                val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.showSoftInput(searchField, InputMethodManager.SHOW_IMPLICIT)
+            }
         } else {
             super.onBackPressed()
         }
