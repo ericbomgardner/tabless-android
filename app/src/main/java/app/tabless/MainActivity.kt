@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         val searchField = findViewById<EditText>(R.id.search_field)
         this.searchField = searchField
-        searchField.setOnEditorActionListener { v: TextView?, actionId: Int, event: KeyEvent? ->  
+        searchField.setOnEditorActionListener { _: TextView?, _: Int, event: KeyEvent? ->
             if (event?.action == KeyEvent.ACTION_DOWN) {
                 loadSearch()
                 return@setOnEditorActionListener true
