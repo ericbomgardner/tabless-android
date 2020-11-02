@@ -46,8 +46,10 @@ class MainActivity : AppCompatActivity() {
             webView?.goBack()
         } else if (webView?.visibility == View.VISIBLE) {
             webView?.visibility = View.INVISIBLE
-            webView?.stopLoading()
+            // NOTE: This doesn't seem to be clearing the existing loaded
+            // page in the web view
             webView?.clearHistory()
+            webView?.clearCache(true)
 
             if (searchField?.requestFocus() == true) {
                 val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
